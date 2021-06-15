@@ -5,6 +5,7 @@ const httpServer = http.createServer();
 const socketServer = sockjs.createServer();
 
 const Board = require('./lib/board');
+const PORT = process.env.PORT || 5000;
 
 let poolOfClient = [];
 
@@ -48,7 +49,7 @@ socketServer.on('connection', connection => {
 
 socketServer.installHandlers(httpServer);
 
-httpServer.listen(5000);
+httpServer.listen(PORT);
 
 function handlePing(connection) {
     connection.write(JSON.stringify({type: 'pong'}));
